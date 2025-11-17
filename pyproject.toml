@@ -1,0 +1,15 @@
+[project]
+name = "mindease-ai-integration"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.121.2",
+    "groq>=0.34.1",
+    "pydantic>=2.12.4",
+    "pydantic-settings>=2.0.0",
+    "python-dotenv>=1.2.1",
+    "uvicorn[standard]>=0.38.0",
+    "chainlit>=1.0.0",
+]
