@@ -1,3 +1,4 @@
+import uuid
 import chainlit as cl
 from mindease.services.chat_service import chat_service
 
@@ -5,7 +6,12 @@ from mindease.services.chat_service import chat_service
 @cl.on_chat_start
 async def on_chat_start():
     """Initialize chat session."""
-    conversation_id = chat_service.generate_conversation_id()
+    # Generate demo user_id and conversation_id for testing
+    # In production, these would come from the frontend/auth system (backend service calls)
+    user_id = str(uuid.uuid4())
+    conversation_id = str(uuid.uuid4())
+
+    cl.user_session.set("user_id", user_id)
     cl.user_session.set("conversation_id", conversation_id)
 
     await cl.Message(
@@ -20,6 +26,7 @@ async def on_chat_start():
 async def on_message(message: cl.Message):
     """Handle incoming messages."""
     user_message = message.content
+    user_id = cl.user_session.get("user_id")
     conversation_id = cl.user_session.get("conversation_id")
 
     # Show loading indicator
@@ -30,6 +37,7 @@ async def on_message(message: cl.Message):
         # Get response from chat service
         response = await chat_service.chat(
             user_message=user_message,
+            user_id=user_id,
             conversation_id=conversation_id,
         )
 

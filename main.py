@@ -10,7 +10,7 @@ import uvicorn
 def run_api():
     """Run FastAPI server."""
     uvicorn.run(
-        "src.api.app:app",
+        "src.mindease.api.app:app",
         host="0.0.0.0",
         port=8000,
         reload=True,
@@ -21,7 +21,7 @@ def run_chainlit():
     """Run Chainlit interface."""
     import subprocess
 
-    subprocess.run(["chainlit", "run", "src/ui/chainlit_app.py", "--port", "8001"])
+    subprocess.run(["chainlit", "run", "src/mindease/ui/chainlit_app.py", "--port", "8001"])
 
 
 if __name__ == "__main__":

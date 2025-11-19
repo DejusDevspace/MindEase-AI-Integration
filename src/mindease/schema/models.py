@@ -5,6 +5,12 @@ from pydantic import BaseModel, Field
 class ChatMessage(BaseModel):
     """User chat message."""
 
+    user_id: str = Field(
+        ...,
+        min_length=1,
+        max_length=255,
+        description="Unique user identifier",
+    )
     content: str = Field(
         ...,
         min_length=1,
