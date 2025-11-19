@@ -1,0 +1,40 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.env
+.env.local
+
+# Development
+.chainlit/
+*.db
+data/
+pytest_cache/
+
+# Documentation
+docs/
+
+# Misc
+.python-version

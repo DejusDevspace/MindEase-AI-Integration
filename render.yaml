@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: mindease-api
+    runtime: docker
+    region: oregon
+    plan: free
+
+    # Build configuration
+    dockerfilePath: ./Dockerfile
+
+    # Health check
+    healthCheckPath: /health
+
+    # Environment variables
+    envVars:
+      - key: GROQ_API_KEY
+        scope: run
+        sync: false
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+        scope: run
+      - key: MAX_TOKENS
+        value: "1024"
+        scope: run
+      - key: TEMPERATURE
+        value: "0.7"
+        scope: run
+      - key: PYTHON_VERSION
+        value: "3.13"
+        scope: build
+
+    # Persistent disk for SQLite database
+    disk:
+      name: mindease-data
+      mountPath: /app/data
+      sizeGB: 1
+
+    # Auto-deploy on git push
+    autoDeploy: true
